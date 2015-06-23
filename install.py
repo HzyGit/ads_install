@@ -22,6 +22,14 @@ def usage():
 def test():
 	install(sys.argv[1],sys.argv[2])
 
+def run(path):
+	cmd=os.path.join(path,"install")
+	if not os.path.isfile(cmd):
+		return
+	os.system(cmd)
+	os.remove(cmd)
+
+
 def main():
 	try:
 		opts,args=getopt.getopt(sys.argv[1:],'hf:',["help","file="])
@@ -43,6 +51,7 @@ def main():
 	if len(args) == 1:
 		path=args[0]
 	install(tarfile,path)
+	run(path)
 
 
 if __name__ == "__main__":
